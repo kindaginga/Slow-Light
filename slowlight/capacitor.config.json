@@ -1,0 +1,6 @@
+{
+  "appId": "com.slowlight.app",
+  "appName": "Slow Light",
+  "webDir": "www",
+  "server": { "androidScheme": "https" }
+}

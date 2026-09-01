@@ -1,0 +1,14 @@
+{
+  "name": "Slow Light",
+  "short_name": "Slow Light",
+  "description": "Make a still deep-sky image move. Runs entirely on your device.",
+  "start_url": "./app.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#1B1F28",
+  "theme_color": "#1B1F28",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

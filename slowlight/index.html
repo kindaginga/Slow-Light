@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Slow Light — make a still deep-sky image move</title>
+<meta name="description" content="Drop in a galaxy or nebula. Slow Light finds the stars and star-forming regions and sets them gently in motion as a seamless loop, at full resolution, entirely on your device.">
+<meta property="og:title" content="Slow Light">
+<meta property="og:description" content="Make a still deep-sky image move. Seamless loops at native resolution, entirely on your device.">
+<meta property="og:image" content="assets/og.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1B1F28">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+  :root {
+    --stage: #000; --panel: #1B1F28; --panel-2: #262B37;
+    --text: #E9E4D8; --muted: #9CA1AD; --amber: #F2B15C; --hair: rgba(233,228,216,.12);
+    --font: "Avenir Next", "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--panel); color: var(--text); font-family: var(--font); line-height: 1.5; }
+  a { color: inherit; }
+
+  /* hero: the loop, full bleed, with the name set quietly over it */
+  .hero { position: relative; min-height: 100svh; background: var(--stage); display: grid; place-items: end start; overflow: hidden; }
+  .hero video, .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero .veil { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.78) 0%, rgba(0,0,0,.25) 40%, rgba(0,0,0,0) 70%); }
+  .hero .copy { position: relative; padding: 0 clamp(20px, 5vw, 64px) clamp(28px, 6vh, 64px); max-width: 720px; }
+  .hero h1 { font-size: clamp(2.4rem, 6vw, 4.6rem); font-weight: 500; line-height: 1.02; letter-spacing: -.015em; margin: 0 0 14px; }
+  .hero p { font-size: clamp(1.05rem, 1.6vw, 1.3rem); color: rgba(233,228,216,.85); margin: 0 0 26px; max-width: 34ch; }
+  .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn { display: inline-block; font: inherit; font-size: 1rem; padding: 12px 20px; border-radius: 8px; border: 1px solid var(--hair); background: rgba(38,43,55,.75); color: var(--text); text-decoration: none; backdrop-filter: blur(6px); }
+  .btn.primary { background: var(--amber); color: #1B1408; border-color: transparent; font-weight: 500; }
+  .btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+  .credit { position: absolute; right: 14px; bottom: 12px; font-size: .78rem; color: rgba(233,228,216,.55); }
+
+  main { max-width: 1040px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 64px); }
+  section { padding: clamp(56px, 9vw, 110px) 0; border-top: 1px solid var(--hair); }
+  section:first-of-type { border-top: 0; }
+  h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 500; line-height: 1.15; letter-spacing: -.01em; margin: 0 0 18px; max-width: 24ch; }
+  .lead { font-size: 1.12rem; color: var(--muted); max-width: 58ch; margin: 0; }
+
+  /* what it finds: the real numbers from the demo image, set large */
+  .found { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px 40px; margin-top: 40px; }
+  .found b { display: block; font-size: 2.6rem; font-weight: 500; letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1; margin-bottom: 8px; }
+  .found span { color: var(--muted); }
+
+  /* how it works is a real sequence, so it is numbered */
+  ol.steps { list-style: none; counter-reset: s; padding: 0; margin: 40px 0 0; display: grid; gap: 22px; }
+  ol.steps li { counter-increment: s; display: grid; grid-template-columns: 2.2rem 1fr; gap: 14px; align-items: baseline; max-width: 64ch; }
+  ol.steps li::before { content: counter(s); color: var(--amber); font-variant-numeric: tabular-nums; font-size: 1.05rem; }
+  ol.steps h3 { font-size: 1.05rem; font-weight: 500; margin: 0 0 4px; }
+  ol.steps p { margin: 0; color: var(--muted); }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 36px; }
+  .two p { margin: 0; color: var(--muted); }
+  .two h3 { font-size: 1.05rem; font-weight: 500; margin: 0 0 6px; }
+
+  footer { padding: 36px clamp(20px, 5vw, 64px) 48px; border-top: 1px solid var(--hair); color: var(--muted); font-size: .9rem; display: flex; flex-wrap: wrap; gap: 8px 28px; justify-content: space-between; }
+  footer a { text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 720px) { .two { grid-template-columns: 1fr; gap: 24px; } }
+  @media (prefers-reduced-motion: reduce) { .hero video { display: none; } .hero img.fallback { display: block; } }
+  .hero img.fallback { display: none; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <video autoplay muted loop playsinline poster="assets/poster.jpg" aria-hidden="true">
+    <source src="assets/demo.mp4" type="video/mp4">
+  </video>
+  <img class="fallback" src="assets/poster.jpg" alt="">
+  <div class="veil"></div>
+  <div class="copy">
+    <h1>Slow Light</h1>
+    <p>Make a still deep-sky image move. Seamless, full resolution, and nothing leaves your device.</p>
+    <div class="actions">
+      <a class="btn primary" href="app.html">Open Slow Light</a>
+      <a class="btn" href="#how">How it works</a>
+    </div>
+  </div>
+  <div class="credit">Demo image: NASA, ESA, CSA</div>
+</header>
+
+<main>
+  <section>
+    <h2>It looks at the image before it touches it.</h2>
+    <p class="lead">Most motion tools ask you to paint where things should move. Slow Light already knows what a galaxy is made of. It finds every point source above the noise, every warm star-forming region, and the diffuse gas between them, then animates each in the way it would actually behave.</p>
+    <div class="found">
+      <div><b>2,600</b><span>stars found in the demo image, each twinkling on its own rhythm in its own colour</span></div>
+      <div><b>201</b><span>star-forming regions, pulsing slowly</span></div>
+      <div><b>17°</b><span>of rotation in the core, easing to a few degrees at the edge, like a real disk</span></div>
+    </div>
+  </section>
+
+  <section id="how">
+    <h2>How it works</h2>
+    <p class="lead">Everything happens in your browser, on your graphics chip. There is no server and no upload.</p>
+    <ol class="steps">
+      <li><div><h3>Find</h3><p>A top-hat filter separates compact sources from the smooth background. Anything above the measured noise floor becomes a star. Red excess marks the star-forming knots.</p></div></li>
+      <li><div><h3>Warp</h3><p>A single shader rotates the galaxy with angular speed falling off with radius, then adds a slow drift to the gas so dust lanes breathe rather than sit still.</p></div></li>
+      <li><div><h3>Glow</h3><p>Stars and knots are drawn as soft additive light, rising and dipping around their original brightness.</p></div></li>
+      <li><div><h3>Loop</h3><p>Every motion is an exact number of cycles over the clip, so the last frame flows into the first with no crossfade and no seam.</p></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Your image stays yours.</h2>
+    <div class="two">
+      <div><h3>No downscaling</h3><p>Preview at screen size, export at the image's native size. A 3600×2702 source produces a 3600×2702 loop.</p></div>
+      <div><h3>No upload</h3><p>Analysis and rendering run on the device. Slow Light works offline once it has loaded, and can be installed like an app.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>Slow Light</span>
+  <span><a href="app.html">Open the tool</a></span>
+  <!-- point this at your repository once it is public -->
+  <span><a href="https://github.com/">Source</a></span>
+</footer>
+
+<script>
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+</script>
+</body>
+</html>
