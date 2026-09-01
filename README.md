@@ -13,8 +13,6 @@ This is the shared rendering core. It runs in any modern browser today and is th
 3. Open the repository's **Actions** tab. A run called "Build apps" starts automatically. It takes about ten minutes.
 4. When it's green, click the run. Under **Artifacts** you'll find `Slow-Light-Windows` (the installer), `Slow-Light-Android` (an APK you can install on any Android phone), and `Slow-Light-Mac`.
 
-Every later push rebuilds all three. The Android build is a debug APK: it installs directly on a phone (allow "install from unknown sources" when asked) and is fine for you, friends, and a portfolio. Publishing to the Play Store needs a signed release build, which Android Studio walks you through.
-
 ## Files
 
 ```
