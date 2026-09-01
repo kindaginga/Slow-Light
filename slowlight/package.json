@@ -1,0 +1,68 @@
+{
+  "name": "slow-light",
+  "productName": "Slow Light",
+  "version": "0.1.0",
+  "description": "Make a still deep-sky image move.",
+  "main": "electron/main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win",
+    "dist:mac": "electron-builder --mac",
+    "dist:linux": "electron-builder --linux",
+    "www": "node scripts/www.js",
+    "android:setup": "npm i @capacitor/core @capacitor/cli @capacitor/android @capacitor/filesystem @capacitor/share && npm run www && npx cap add android",
+    "android": "npm run www && npx cap sync android && npx cap open android"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.0"
+  },
+  "build": {
+    "appId": "com.slowlight.app",
+    "productName": "Slow Light",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "electron/**",
+      "app.html",
+      "app.js",
+      "index.html",
+      "icon.svg",
+      "build/icon.png",
+      "assets/poster.jpg",
+      "!assets/demo.mp4",
+      "!release/**",
+      "!www/**",
+      "!android/**",
+      "!ios/**",
+      "!scripts/**"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "build/icon.png"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "icon": "build/icon.png",
+      "category": "public.app-category.photography"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "icon": "build/icon.png",
+      "category": "Graphics"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
