@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 20 }
       - run: npm install --no-audit --no-fund
-      - run: npx electron-builder --win nsis --x64
+      - run: npx electron-builder --win nsis --x64 --publish never
       - uses: actions/upload-artifact@v4
         with:
           name: Slow-Light-Windows
@@ -30,7 +30,7 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 20 }
       - run: npm install --no-audit --no-fund
-      - run: npx electron-builder --mac dmg
+      - run: npx electron-builder --mac dmg --publish never
         env: { CSC_IDENTITY_AUTO_DISCOVERY: "false" }
       - uses: actions/upload-artifact@v4
         with:

@@ -2,7 +2,7 @@
   "name": "slow-light",
   "productName": "Slow Light",
   "version": "0.1.0",
-  "description": "Make a still deep-sky image move.",
+  "description": "Make a still deep-sky image move.",`n  "author": "kindaginga",
   "main": "electron/main.js",
   "private": true,
   "scripts": {
