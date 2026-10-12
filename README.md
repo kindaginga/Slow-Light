@@ -33,6 +33,7 @@ icon.svg              app icon
 assets/demo.mp4       1600px web preview of the demo loop (the native-res file is not in the repo)
 assets/poster.jpg     hero poster and offline fallback
 assets/og.jpg         social-share image
+LICENSE               GNU General Public License v3.0
 ```
 
 ## How it works
@@ -69,7 +70,7 @@ The constant 1.045 crop (`P.zoom`) is the margin that lets the warps pull pixels
 
 In order. Each is a self-contained step.
 
-**0. Replace the demo numbers if you change the demo image.** The landing page quotes 2,600 stars and 201 regions. Those are from the galaxy this was built with. If you swap `assets/demo.mp4`, update them.
+**0. Demo numbers follow the demo image.** The landing page quotes 2,600 stars and 201 regions, measured on the galaxy in `assets/demo.mp4`. A new demo image needs new numbers.
 
 **1. Full-quality export with WebCodecs.** `MediaRecorder` is convenient but hands the codec and bitrate to the browser and records in real time. `VideoEncoder` gives explicit control and can run faster than real time. One constraint to design around: an image this size (3600 x 2702) exceeds H.264 level 5.2's frame-size limit, so hardware H.264 encoders may refuse it. VP9 or AV1 in a WebM container is the reliable default at native resolution, with H.264 offered when the frame fits.
 
@@ -81,4 +82,8 @@ In order. Each is a self-contained step.
 
 ## License and image credits
 
-Code: yours. Sample imagery you bundle from NASA is public domain; ESA/Hubble and ESA/Webb imagery is generally CC BY 4.0 and needs a credit line.
+Copyright (C) 2026 Orrerium Studios LLC.
+
+Slow Light is free software: you can redistribute it and/or modify it under the terms of the [GNU General Public License v3.0](LICENSE).
+
+Imagery from NASA is public domain; ESA/Hubble and ESA/Webb imagery is generally CC BY 4.0 and needs a credit line.

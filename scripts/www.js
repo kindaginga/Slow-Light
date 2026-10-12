@@ -15,6 +15,6 @@ const rw = (src, dst, edits = []) => {
 };
 rw('app.html', 'index.html', [['href="index.html"', 'href="about.html"']]);
 rw('index.html', 'about.html', [['href="app.html"', 'href="index.html"']]);
-for (const f of ['app.js', 'icon.svg', 'manifest.webmanifest', 'assets/poster.jpg', 'assets/demo.mp4'])
+for (const f of ['app.js', 'icon.svg', 'manifest.webmanifest', 'assets/poster.jpg', 'assets/demo.mp4', 'LICENSE'])
   fs.copyFileSync(path.join(root, f), path.join(out, f));
 console.log('www/ ready');

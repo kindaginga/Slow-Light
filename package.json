@@ -1,9 +1,10 @@
 {
   "name": "slow-light",
   "productName": "Slow Light",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Make a still deep-sky image move.",
   "author": "Orrerium Studios LLC",
+  "license": "GPL-3.0-only",
   "main": "electron/main.js",
   "private": true,
   "scripts": {
@@ -38,6 +39,7 @@
       "icon.svg",
       "build/icon.png",
       "assets/poster.jpg",
+      "LICENSE",
       "!assets/demo.mp4",
       "!release/**",
       "!www/**",
