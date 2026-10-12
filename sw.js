@@ -1,5 +1,5 @@
 // Slow Light service worker: cache the app shell so it opens offline once visited.
-const CACHE = 'slow-light-v1';
+const CACHE = 'slow-light-0.1.1';
 const SHELL = ['./', './index.html', './app.html', './app.js', './icon.svg', './manifest.webmanifest', './assets/poster.jpg'];
 
 self.addEventListener('install', (e) => {

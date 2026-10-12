@@ -68,10 +68,10 @@ The same files inside a native Android shell, via Capacitor. Test in the phone's
 **Set up the project (once):**
 
 ```
-npm run android:setup
+npm install
 ```
 
-This installs Capacitor and the two plugins the app uses (Filesystem and Share, for saving exports), assembles the `www/` folder, and generates the `android/` project.
+This installs Capacitor and the two plugins the app uses (Filesystem and Share, for saving exports). The `android/` project is part of the repository, so there is nothing to generate.
 
 **Run or rebuild:**
 

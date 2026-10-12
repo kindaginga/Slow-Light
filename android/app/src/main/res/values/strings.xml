@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Slow Light</string>
+    <string name="title_activity_main">Slow Light</string>
+    <string name="package_name">com.slowlight.app</string>
+    <string name="custom_url_scheme">com.slowlight.app</string>
+</resources>

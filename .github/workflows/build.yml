@@ -12,12 +12,12 @@ jobs:
     name: Windows installer
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20 }
-      - run: npm install --no-audit --no-fund
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with: { node-version: 24 }
+      - run: npm ci --no-audit --no-fund
       - run: npx electron-builder --win nsis --x64 --publish never
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: Slow-Light-Windows
           path: release/*.exe
@@ -26,13 +26,13 @@ jobs:
     name: Mac app
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20 }
-      - run: npm install --no-audit --no-fund
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with: { node-version: 24 }
+      - run: npm ci --no-audit --no-fund
       - run: npx electron-builder --mac dmg --publish never
         env: { CSC_IDENTITY_AUTO_DISCOVERY: "false" }
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: Slow-Light-Mac
           path: release/*.dmg
@@ -41,20 +41,18 @@ jobs:
     name: Android APK
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20 }
-      - uses: actions/setup-java@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with: { node-version: 24 }
+      - uses: actions/setup-java@v6
         with: { distribution: temurin, java-version: 21 }
-      - uses: android-actions/setup-android@v3
-      - run: npm install --no-audit --no-fund
-      - run: npm install --no-audit --no-fund @capacitor/core @capacitor/cli @capacitor/android @capacitor/filesystem @capacitor/share
+      - uses: android-actions/setup-android@v4
+      - run: npm ci --no-audit --no-fund
       - run: npm run www
-      - run: npx cap add android
       - run: npx cap sync android
       - run: cd android && chmod +x gradlew && ./gradlew assembleDebug --no-daemon
       - run: cp android/app/build/outputs/apk/debug/app-debug.apk "Slow-Light-Android.apk"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: Slow-Light-Android
           path: Slow-Light-Android.apk
