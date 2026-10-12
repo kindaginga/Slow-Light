@@ -4,7 +4,7 @@ Make a still deep-sky image move. Drop in a galaxy or nebula; Slow Light finds t
 
 ## Download
 
-No account or setup needed. Download the app from the **[latest release](https://github.com/kindaginga/Slow-Light/releases/latest)**:
+No account or setup needed. Download the app from the **[latest release](https://github.com/orrerium-studios/Slow-Light/releases/latest)**:
 
 | Platform | File |
 |---|---|
@@ -12,7 +12,7 @@ No account or setup needed. Download the app from the **[latest release](https:/
 | Mac with Apple silicon | the `.dmg` |
 | Android | `Slow-Light-Android.apk` |
 
-Or use it in your browser with nothing to install: **[kindaginga.github.io/Slow-Light](https://kindaginga.github.io/Slow-Light/)**
+Or use it in your browser with nothing to install: **[orrerium-studios.github.io/Slow-Light](https://orrerium-studios.github.io/Slow-Light/)**
 
 ## Files
 
